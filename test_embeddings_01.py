@@ -38,6 +38,7 @@ def create_index_db(database, embeddings):
     print(f'chunk_num={chunk_num}')
 
     db = FAISS.from_documents(source_chunks, embeddings) # Создадим индексную базу из разделенных фрагментов текста
+    FAISS.save_local()
     return db
 
 # Поиск релевантных отрезков из базы знаний
@@ -48,8 +49,8 @@ def get_message_content(topic, db):
 
 # Получение embeddings
 def get_embeddings(model):
-  # model_kwargs = {'device': 'cpu'}
-  model_kwargs = {'device': 'cuda'}
+  model_kwargs = {'device': 'cpu'}
+  # model_kwargs = {'device': 'cuda'}
   embeddings_hf = HuggingFaceEmbeddings(
     model_name=model,
     model_kwargs=model_kwargs

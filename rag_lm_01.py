@@ -18,8 +18,8 @@ def create_index_db(database):
 
     # model_id = 'sentence-transformers/all-MiniLM-L6-v2'
     model_id = 'intfloat/multilingual-e5-large'
-    # model_kwargs = {'device': 'cpu'}
-    model_kwargs = {'device': 'cuda'}
+    model_kwargs = {'device': 'cpu'}
+    # model_kwargs = {'device': 'cuda'}
     embeddings = HuggingFaceEmbeddings(
       model_name=model_id,
       model_kwargs=model_kwargs
@@ -39,8 +39,8 @@ def get_message_content(topic, index_db, k_num):
 # Функция отправки запроса в модель и получения ответа от модели
 def answer_index(system, topic, message_content, temp):
     openai.api_type = "open_ai"
-    # openai.api_base = "http://localhost:1234/v1" #URL for LM Studio
-    openai.api_base = "http://localhost:5000/v1"  # URL for TextGen WebUI
+    openai.api_base = "http://localhost:1234/v1" #URL for LM Studio
+    # openai.api_base = "http://localhost:5000/v1"  # URL for TextGen WebUI
     openai.api_key = "no need anymore"
 
     messages = [
